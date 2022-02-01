@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "983641476385",
+    "project_id": "sharda-car-pooling-8feb4",
+    "storage_bucket": "sharda-car-pooling-8feb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983641476385:android:26783b627fb6d5f5088260",
+        "android_client_info": {
+          "package_name": "com.example.easyorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983641476385-2j6f3epnk9trdn8alpn00heer07134sl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb-E9ikMN2zUjPX66hBBjq4qfqMOV8nP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983641476385-2j6f3epnk9trdn8alpn00heer07134sl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983641476385:android:f4668a9967dfa4e5088260",
+        "android_client_info": {
+          "package_name": "com.example.shardapooling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983641476385-2j6f3epnk9trdn8alpn00heer07134sl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb-E9ikMN2zUjPX66hBBjq4qfqMOV8nP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983641476385-2j6f3epnk9trdn8alpn00heer07134sl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983641476385:android:6e695b48dd1a2ed3088260",
+        "android_client_info": {
+          "package_name": "com.example.sucarpooling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983641476385-2j6f3epnk9trdn8alpn00heer07134sl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb-E9ikMN2zUjPX66hBBjq4qfqMOV8nP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983641476385-2j6f3epnk9trdn8alpn00heer07134sl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
