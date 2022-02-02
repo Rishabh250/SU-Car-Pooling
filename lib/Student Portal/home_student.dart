@@ -112,8 +112,9 @@ class _StudentHomePageState extends State<StudentHomePage> {
 
     var res = await http.post(Uri.parse(url), body: data);
     var responseBody = jsonDecode(res.body);
+    print(responseBody);
     setState(() {
-      finalName = responseBody;
+      finalName = responseBody['name'];
       getFirstLetter = finalName[0];
     });
     return responseBody;

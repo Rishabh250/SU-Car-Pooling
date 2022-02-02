@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +9,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sucarpooling/responsive.dart';
+import 'package:location/location.dart' as loc;
+import 'package:http/http.dart' as http;
 
 class DriverInfo extends StatefulWidget {
   final driverModel;
@@ -20,9 +25,12 @@ class _DriverInfoState extends State<DriverInfo> {
   var _buttoncolor = Colors.black;
   String finalMail = "";
   String amount = "";
+  var sysID;
   String _book = "Book Now";
   bool _boolButton = true;
   Razorpay _razorpay = Razorpay();
+  final loc.Location location = loc.Location();
+  StreamSubscription<loc.LocationData>? _locationSubscription;
 
   @override
   void initState() {
@@ -39,22 +47,73 @@ class _DriverInfoState extends State<DriverInfo> {
     super.initState();
   }
 
-  void dispose() {
-    super.dispose();
-    _razorpay.clear();
-  }
-
   getData() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
+    sharedPreferences.getString("email");
+    final SharedPreferences sharedPreferences03 =
+        await SharedPreferences.getInstance();
+    sharedPreferences03.getString("table");
+
     finalMail = sharedPreferences.getString("email")!;
+
+    String url = "https://guam-monoliths.000webhostapp.com/fetch_data.php";
+    var data = {
+      "email": sharedPreferences.getString("email"),
+      "table": sharedPreferences03.getString("table")
+    };
+
+    var res = await http.post(Uri.parse(url), body: data);
+    var responseBody = jsonDecode(res.body);
+
+    setState(() {
+      sysID = responseBody['sysID'];
+    });
+    return responseBody;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _razorpay.clear();
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     setState(() {
       seats = seats - 1;
     });
-    print("Sucess");
+    _getLocation();
+    _listenLocation();
+  }
+
+  _getLocation() async {
+    try {
+      final loc.LocationData _locationResult = await location.getLocation();
+      await FirebaseFirestore.instance
+          .collection(sysID)
+          .doc('Current Location')
+          .set({
+        'latitude': _locationResult.latitude,
+        'longitude': _locationResult.longitude,
+      }, SetOptions(merge: true));
+    } catch (e) {}
+  }
+
+  Future<void> _listenLocation() async {
+    _locationSubscription = location.onLocationChanged.handleError((onError) {
+      _locationSubscription?.cancel();
+      setState(() {
+        _locationSubscription = null;
+      });
+    }).listen((loc.LocationData currentlocation) async {
+      await FirebaseFirestore.instance
+          .collection(sysID)
+          .doc("Live Location")
+          .set({
+        'latitude': currentlocation.latitude,
+        'longitude': currentlocation.longitude,
+      }, SetOptions(merge: true));
+    });
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

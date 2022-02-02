@@ -2,7 +2,6 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
-import 'package:sucarpooling/Map/main_map.dart';
 import 'package:sucarpooling/ParentPortal/home_parent.dart';
 
 import '../login.dart';
@@ -17,35 +16,34 @@ class ParentPage extends StatefulWidget {
 class _ParentPageState extends State<ParentPage> {
   int _currentIndex = 0;
 
-  List listofBody = [
-    ParentHomePage(),
-    Container(
-      color: Colors.blue,
-    ),
-    Scaffold(
-      body: MainMap(),
-    ),
-    Container(
-      color: Colors.yellow,
-      child: Center(
-        child: MaterialButton(
-          onPressed: () async {
-            final SharedPreferences sharedPreferences =
-                await SharedPreferences.getInstance();
-
-            sharedPreferences.remove("email");
-            sharedPreferences.remove("page");
-            Get.offAll(LoginPage());
-          },
-          child: const Text("Logout"),
-        ),
-      ),
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: listofBody[_currentIndex],
+      body: IndexedStack(
+        children: [
+          ParentHomePage(),
+          Container(
+            color: Colors.blue,
+          ),
+          Container(
+            color: Colors.yellow,
+            child: Center(
+              child: MaterialButton(
+                onPressed: () async {
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+
+                  sharedPreferences.remove("email");
+                  sharedPreferences.remove("page");
+                  Get.offAll(LoginPage());
+                },
+                child: const Text("Logout"),
+              ),
+            ),
+          ),
+        ],
+        index: _currentIndex,
+      ),
       bottomNavigationBar: BottomNavyBar(
         backgroundColor: Colors.transparent,
         selectedIndex: _currentIndex,
@@ -64,14 +62,6 @@ class _ParentPageState extends State<ParentPage> {
             icon: const Icon(Icons.people),
             title: const Text('Student'),
             activeColor: Colors.purpleAccent,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(Icons.track_changes),
-            title: const Text(
-              'Live Tracking',
-            ),
-            activeColor: Colors.pink,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(

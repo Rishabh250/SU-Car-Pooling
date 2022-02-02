@@ -19,39 +19,39 @@ class ParentHomePage extends StatefulWidget {
 }
 
 class _ParentHomePageState extends State<ParentHomePage> {
-  final PageController _pageController = PageController(viewportFraction: 0.9);
-  String finalName = "";
   var userID;
   var userID2;
+  String finalName = "";
+  String sysID = "";
 
   @override
   void initState() {
     getData();
-    getCurrentLocation();
-    getLiveLocation();
     super.initState();
   }
 
   getCurrentLocation() {
     FirebaseFirestore.instance
-        .collection('location')
-        .doc("Rishabh")
+        .collection(sysID)
+        .doc("Current Location")
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         userID = documentSnapshot.id;
+        print(userID);
       }
     });
   }
 
   getLiveLocation() {
     FirebaseFirestore.instance
-        .collection('location')
-        .doc("2021302586")
+        .collection(sysID)
+        .doc("Live Location")
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         userID2 = documentSnapshot.id;
+        print(userID2);
       }
     });
   }
@@ -72,9 +72,14 @@ class _ParentHomePageState extends State<ParentHomePage> {
 
     var res = await http.post(Uri.parse(url), body: data);
     var responseBody = jsonDecode(res.body);
+
     setState(() {
-      finalName = responseBody;
+      finalName = responseBody['name'];
+      sysID = responseBody['sysID'];
+      getCurrentLocation();
+      getLiveLocation();
     });
+
     return responseBody;
   }
 
@@ -102,7 +107,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 ))
           ],
           title: Text(
-            "Hi, $finalName",
+            "Hi, " + finalName,
             style: TextStyle(
                 color: Colors.black,
                 fontSize: Responsive.isSmallMobile(context) ? 20 : 25),
@@ -137,7 +142,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                       getCurrentLocation();
 
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MyMap(userID)));
+                          builder: (context) => MyMap(userID, sysID)));
                     },
                     child: Card(
                         shape: RoundedRectangleBorder(
@@ -173,7 +178,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                       getLiveLocation();
 
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MyMap(userID2)));
+                          builder: (context) => MyMap(userID2, sysID)));
                     },
                     child: Card(
                         shape: RoundedRectangleBorder(

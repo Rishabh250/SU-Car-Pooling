@@ -1,11 +1,15 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as loc;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyMap extends StatefulWidget {
   final String user_id;
-  const MyMap(this.user_id);
+  final String sysID;
+  const MyMap(this.user_id, this.sysID);
   @override
   _MyMapState createState() => _MyMapState();
 }
@@ -16,6 +20,7 @@ class _MyMapState extends State<MyMap> {
   bool _added = false;
   bool _visible = false;
   bool _visible01 = true;
+  String sysID = '';
 
   Icon _iconState = const Icon(Icons.keyboard_arrow_up);
   late BitmapDescriptor customIcon, customIcon2;
@@ -34,6 +39,7 @@ class _MyMapState extends State<MyMap> {
 
   @override
   void initState() {
+    sysID = widget.sysID;
     super.initState();
     setCustomMarker();
   }
@@ -93,8 +99,7 @@ class _MyMapState extends State<MyMap> {
       body: Stack(
         children: [
           StreamBuilder(
-            stream:
-                FirebaseFirestore.instance.collection('location').snapshots(),
+            stream: FirebaseFirestore.instance.collection(sysID).snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (_added) {
                 mymap(snapshot);
