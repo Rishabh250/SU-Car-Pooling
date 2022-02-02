@@ -18,20 +18,6 @@ class StudentPage extends StatefulWidget {
 class _StudentPageState extends State<StudentPage> {
   int _currentIndex = 0;
 
-  Color _color = Colors.black;
-
-  void getColor() {
-    if (_currentIndex == 0) {
-      _color = Colors.black;
-    }
-    if (_currentIndex == 1) {
-      _color = Colors.black;
-    }
-    if (_currentIndex == 2) {
-      _color = Colors.white;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +55,6 @@ class _StudentPageState extends State<StudentPage> {
         onItemSelected: (index) {
           setState(() {
             _currentIndex = index;
-            getColor();
           });
         },
         items: <BottomNavyBarItem>[
@@ -86,8 +71,8 @@ class _StudentPageState extends State<StudentPage> {
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: const Icon(Icons.settings),
-            title: const Text('Settings'),
+            icon: const Icon(Icons.feedback_outlined),
+            title: const Text('Feedback'),
             activeColor: Colors.blue,
             textAlign: TextAlign.center,
           ),

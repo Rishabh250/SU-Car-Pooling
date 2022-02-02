@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:sucarpooling/Map/main_map.dart';
+import 'package:sucarpooling/ParentPortal/home_parent.dart';
 
 import '../login.dart';
 
@@ -17,9 +18,7 @@ class _ParentPageState extends State<ParentPage> {
   int _currentIndex = 0;
 
   List listofBody = [
-    Container(
-      color: Colors.red,
-    ),
+    ParentHomePage(),
     Container(
       color: Colors.blue,
     ),

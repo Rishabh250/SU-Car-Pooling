@@ -63,6 +63,8 @@ dependencies:
   card_swiper: ^1.0.4
   razorpay_flutter: ^1.2.7
   hexcolor: ^2.0.6
+  url_launcher: ^6.0.18
+  qr_flutter: ^4.0.0
 
 
 dev_dependencies:

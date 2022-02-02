@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sucarpooling/components/bookingList.dart';
 import 'package:sucarpooling/responsive.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CarRegister extends StatefulWidget {
   const CarRegister({Key? key}) : super(key: key);
@@ -416,7 +417,15 @@ class BookingDetails extends StatelessWidget {
                                                     BorderRadius.circular(10)),
                                             elevation: 10,
                                             color: Colors.black,
-                                            onPressed: () {},
+                                            onPressed: () async {
+                                              print("object");
+
+                                              var url = "+91" +
+                                                  bookingList[index]
+                                                      .phoneNumber;
+
+                                              await launch('tel:$url');
+                                            },
                                             child: Text(
                                               "Call now",
                                               style: GoogleFonts.salsa(
