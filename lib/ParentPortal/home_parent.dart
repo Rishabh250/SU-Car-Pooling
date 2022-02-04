@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:sucarpooling/Map/mymap.dart';
-
 import 'package:sucarpooling/responsive.dart';
 import '../login.dart';
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,19 +43,11 @@ class _StudentHomePageState extends State<StudentHomePage> {
   }
 
   String finalName = "";
-  int _cars = 0;
   String getFirstLetter = "";
 
   int hometown = 0;
-  var city, car;
   List carDetails = [];
   List cityList = [];
-  final List<String> _homeTown = [
-    "Bulandshahr",
-    "Sikandrabad",
-    "Nodia",
-    "Delhi"
-  ];
 
   List bsrCarList = [];
 
@@ -112,7 +105,6 @@ class _StudentHomePageState extends State<StudentHomePage> {
 
     var res = await http.post(Uri.parse(url), body: data);
     var responseBody = jsonDecode(res.body);
-    print(responseBody);
     setState(() {
       finalName = responseBody['name'];
       getFirstLetter = finalName[0];
@@ -176,27 +168,44 @@ class _StudentHomePageState extends State<StudentHomePage> {
                 height: 20,
               ),
               ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('My Profile'),
+                leading: const Icon(
+                  Icons.person,
+                  color: Colors.amber,
+                ),
+                title: const Text(
+                  'My Profile',
+                ),
                 onTap: () {},
               ),
               ListTile(
-                leading: const Icon(Icons.history_toggle_off),
+                leading: const Icon(
+                  Icons.history_toggle_off,
+                  color: Colors.green,
+                ),
                 title: const Text('Booking History'),
                 onTap: () {},
               ),
               ListTile(
-                leading: const Icon(Icons.payment),
+                leading: const Icon(
+                  Icons.payment,
+                  color: Colors.orange,
+                ),
                 title: const Text('Payment Methods'),
                 onTap: () {},
               ),
               ListTile(
-                leading: const Icon(Icons.settings),
+                leading: const Icon(
+                  Icons.settings,
+                  color: Colors.blue,
+                ),
                 title: const Text('Settings'),
                 onTap: () {},
               ),
               ListTile(
-                leading: const Icon(Icons.logout),
+                leading: const Icon(
+                  Icons.logout,
+                  color: Colors.redAccent,
+                ),
                 title: const Text('Logout'),
                 onTap: () async {
                   final SharedPreferences sharedPreferences =
@@ -649,10 +658,11 @@ class _StudentHomePageState extends State<StudentHomePage> {
                                                                             .cityName);
                                                                         Navigator.push(
                                                                             context,
-                                                                            MaterialPageRoute(
-                                                                                builder: (context) => DriverInfo(
-                                                                                      driverModel: carDetails[j],
-                                                                                    )));
+                                                                            PageTransition(
+                                                                                type: PageTransitionType.fade,
+                                                                                child: DriverInfo(
+                                                                                  driverModel: carDetails[j],
+                                                                                )));
                                                                       },
                                                                       child:
                                                                           Text(

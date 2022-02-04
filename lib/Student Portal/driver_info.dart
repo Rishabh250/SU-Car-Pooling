@@ -243,270 +243,260 @@ class _DriverInfoState extends State<DriverInfo> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Expanded(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Card(
-                                  elevation: 8,
-                                  color: Colors.transparent,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.9,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          HexColor("D5D0E5"),
-                                          HexColor("F3E6E8"),
-                                        ],
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0, top: 20, bottom: 30),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                  widget.driverModel.driverName,
-                                                  style: GoogleFonts.salsa(
-                                                    fontSize: Responsive
-                                                            .isSmallMobile(
-                                                                context)
-                                                        ? 25
-                                                        : 35,
-                                                    color: Colors.black,
-                                                  )),
-                                              const Spacer(),
-                                              if (widget
-                                                      .driverModel.occupation ==
-                                                  "Student")
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10.0),
-                                                  child: Image.asset(
-                                                    "images/std.png",
-                                                    height: Responsive
-                                                            .isSmallMobile(
-                                                                context)
-                                                        ? 35
-                                                        : 50,
-                                                  ),
-                                                ),
-                                              if (widget
-                                                      .driverModel.occupation ==
-                                                  "Faculty")
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10.0),
-                                                  child: Image.asset(
-                                                    "images/fac.png",
-                                                    height: Responsive
-                                                            .isSmallMobile(
-                                                                context)
-                                                        ? 35
-                                                        : 50,
-                                                  ),
-                                                ),
-                                            ],
-                                          ),
-                                          Text(widget.driverModel.sysID,
-                                              style: GoogleFonts.salsa(
-                                                fontSize:
-                                                    Responsive.isSmallMobile(
-                                                            context)
-                                                        ? 15
-                                                        : 20,
-                                                color: Colors.black,
-                                              )),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                  "Available Seats : "
-                                                          " " +
-                                                      "$seats",
-                                                  style: GoogleFonts.salsa(
-                                                    fontSize: Responsive
-                                                            .isSmallMobile(
-                                                                context)
-                                                        ? 15
-                                                        : 20,
-                                                    color: Colors.black,
-                                                  )),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.location_city_outlined,
-                                                color: Colors.purple,
-                                              ),
-                                              Text(
-                                                  "   " +
-                                                      widget.driverModel.city,
-                                                  style: GoogleFonts.salsa(
-                                                    fontSize: Responsive
-                                                            .isSmallMobile(
-                                                                context)
-                                                        ? 15
-                                                        : 20,
-                                                    color: Colors.black,
-                                                  )),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              const FaIcon(
-                                                FontAwesomeIcons.car,
-                                                color: Colors.purple,
-                                              ),
-                                              Text(
-                                                  "   " +
-                                                      widget.driverModel
-                                                          .driverCar +
-                                                      " " +
-                                                      widget.driverModel
-                                                          .carNumber,
-                                                  style: GoogleFonts.salsa(
-                                                    fontSize: Responsive
-                                                            .isSmallMobile(
-                                                                context)
-                                                        ? 15
-                                                        : 20,
-                                                    color: Colors.black,
-                                                  )),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Card(
+                                elevation: 8,
+                                color: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.9,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        HexColor("D5D0E5"),
+                                        HexColor("F3E6E8"),
+                                      ],
                                     ),
                                   ),
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      width: 25,
-                                    ),
-                                    MaterialButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      elevation: 10,
-                                      color: _buttoncolor,
-                                      onPressed: () {
-                                        if (_boolButton == true) {
-                                          _bookSeats();
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      child: Text(
-                                        _book,
-                                        style: GoogleFonts.salsa(
-                                            fontSize: Responsive.isSmallMobile(
-                                                    context)
-                                                ? 16
-                                                : 20,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                Card(
-                                  elevation: 8,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.9,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          HexColor("D5D0E5"),
-                                          HexColor("F3E6E8"),
-                                        ],
-                                      ),
-                                    ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10.0, top: 20, bottom: 30),
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Image.asset(
-                                                "images/std.png",
-                                                height:
-                                                    Responsive.isSmallMobile(
-                                                            context)
-                                                        ? 20
-                                                        : 30,
-                                              ),
-                                              Text(
-                                                "Student ",
+                                        Row(
+                                          children: [
+                                            Text(widget.driverModel.driverName,
                                                 style: GoogleFonts.salsa(
-                                                    fontSize: 25),
-                                              )
-                                            ],
-                                          ),
+                                                  fontSize:
+                                                      Responsive.isSmallMobile(
+                                                              context)
+                                                          ? 25
+                                                          : 35,
+                                                  color: Colors.black,
+                                                )),
+                                            const Spacer(),
+                                            if (widget.driverModel.occupation ==
+                                                "Student")
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10.0),
+                                                child: Image.asset(
+                                                  "images/std.png",
+                                                  height:
+                                                      Responsive.isSmallMobile(
+                                                              context)
+                                                          ? 35
+                                                          : 50,
+                                                ),
+                                              ),
+                                            if (widget.driverModel.occupation ==
+                                                "Faculty")
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10.0),
+                                                child: Image.asset(
+                                                  "images/fac.png",
+                                                  height:
+                                                      Responsive.isSmallMobile(
+                                                              context)
+                                                          ? 35
+                                                          : 50,
+                                                ),
+                                              ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Image.asset(
-                                                "images/fac.png",
-                                                height:
-                                                    Responsive.isSmallMobile(
-                                                            context)
-                                                        ? 20
-                                                        : 30,
-                                              ),
-                                              Text(
-                                                "Faculty ",
+                                        Text(widget.driverModel.sysID,
+                                            style: GoogleFonts.salsa(
+                                              fontSize:
+                                                  Responsive.isSmallMobile(
+                                                          context)
+                                                      ? 15
+                                                      : 20,
+                                              color: Colors.black,
+                                            )),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                                "Available Seats : "
+                                                        " " +
+                                                    "$seats",
                                                 style: GoogleFonts.salsa(
-                                                    fontSize: 25),
-                                              )
-                                            ],
-                                          ),
+                                                  fontSize:
+                                                      Responsive.isSmallMobile(
+                                                              context)
+                                                          ? 15
+                                                          : 20,
+                                                  color: Colors.black,
+                                                )),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.location_city_outlined,
+                                              color: Colors.purple,
+                                            ),
+                                            Text(
+                                                "   " + widget.driverModel.city,
+                                                style: GoogleFonts.salsa(
+                                                  fontSize:
+                                                      Responsive.isSmallMobile(
+                                                              context)
+                                                          ? 15
+                                                          : 20,
+                                                  color: Colors.black,
+                                                )),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const FaIcon(
+                                              FontAwesomeIcons.car,
+                                              color: Colors.purple,
+                                            ),
+                                            Text(
+                                                "   " +
+                                                    widget
+                                                        .driverModel.driverCar +
+                                                    " " +
+                                                    widget
+                                                        .driverModel.carNumber,
+                                                style: GoogleFonts.salsa(
+                                                  fontSize:
+                                                      Responsive.isSmallMobile(
+                                                              context)
+                                                          ? 15
+                                                          : 20,
+                                                  color: Colors.black,
+                                                )),
+                                          ],
                                         ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    width: 25,
+                                  ),
+                                  MaterialButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    elevation: 10,
+                                    color: _buttoncolor,
+                                    onPressed: () {
+                                      if (_boolButton == true) {
+                                        _bookSeats();
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    child: Text(
+                                      _book,
+                                      style: GoogleFonts.salsa(
+                                          fontSize:
+                                              Responsive.isSmallMobile(context)
+                                                  ? 16
+                                                  : 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Card(
+                                elevation: 8,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.9,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        HexColor("D5D0E5"),
+                                        HexColor("F3E6E8"),
+                                      ],
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Image.asset(
+                                              "images/std.png",
+                                              height: Responsive.isSmallMobile(
+                                                      context)
+                                                  ? 20
+                                                  : 30,
+                                            ),
+                                            Text(
+                                              "Student ",
+                                              style: GoogleFonts.salsa(
+                                                  fontSize: 25),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Image.asset(
+                                              "images/fac.png",
+                                              height: Responsive.isSmallMobile(
+                                                      context)
+                                                  ? 20
+                                                  : 30,
+                                            ),
+                                            Text(
+                                              "Faculty ",
+                                              style: GoogleFonts.salsa(
+                                                  fontSize: 25),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

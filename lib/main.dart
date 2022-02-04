@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sucarpooling/responsive.dart';
 import 'InternetConnectivity/net_connection.dart';
@@ -11,9 +12,8 @@ import 'login.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -49,8 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
     if (await checkConnection.checkInternet()) {
       Timer(
           const Duration(seconds: 2),
-          () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const LoginPage())));
+          () => Navigator.pushReplacement(
+              context,
+              PageTransition(
+                  type: PageTransitionType.fade, child: const LoginPage())));
     } else {
       Timer(
         const Duration(seconds: 2),
@@ -68,8 +70,10 @@ class _MyHomePageState extends State<MyHomePage> {
       );
       Timer(
           const Duration(seconds: 8),
-          () => Navigator.push((context),
-              MaterialPageRoute(builder: (context) => const MyApp())));
+          () => Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.fade, child: const MyApp())));
     }
   }
 
