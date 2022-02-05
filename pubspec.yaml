@@ -37,7 +37,6 @@ dependencies:
   location: ^4.3.0
   cloud_firestore: ^3.1.0
   firebase_core: ^1.10.0
-  permission_handler: 8.1.4+2
   cupertino_icons: ^1.0.2
   connectivity: ^3.0.6
   provider: ^6.0.1
@@ -46,6 +45,7 @@ dependencies:
   fluttertoast: ^8.0.8
   mailer: ^5.0.2
   flutter_email_sender: ^5.0.2
+  permission_handler: ^8.3.0
   image_picker: ^0.8.4+1
   form_field_validator: ^1.1.0
   sizer: ^2.0.15
