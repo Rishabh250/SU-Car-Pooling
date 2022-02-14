@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
 import 'package:flutter/material.dart';
 import 'package:sucarpooling/responsive.dart';
 
@@ -172,10 +170,10 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
     controller!.pauseCamera();
     for (int i = 0; i <= _qrList.length; i++) {
       if (barcode!.code!.contains(_qrList[i])) {
-        return Container(
+        return SizedBox(
           width: 500,
           child: AlertDialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             elevation: 8,
             title: Text(

@@ -485,7 +485,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        width: Responsive.isSmallMobile(context) ? 20 : 80,
+                        width: Responsive.isSmallMobile(context) ? 20 : 70,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),

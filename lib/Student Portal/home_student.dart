@@ -301,14 +301,14 @@ class _StudentHomePageState extends State<StudentHomePage> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: Responsive.isSmallMobile(context)
                                       ? 10
-                                      : 15)),
+                                      : 13)),
                           Text("Shardians".toUpperCase(),
                               style: GoogleFonts.poppins(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
                                   fontSize: Responsive.isSmallMobile(context)
                                       ? 10
-                                      : 15)),
+                                      : 13)),
                         ],
                       ),
                     ),
